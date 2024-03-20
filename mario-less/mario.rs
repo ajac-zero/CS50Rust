@@ -30,10 +30,6 @@ fn build_blocks(blocks: i8) {
         for _ in 1..=n {
             print!("#");
         }
-        print!("  ");
-        for _ in 1..=n {
-            print!("#");
-        }
         blanks = blanks - 1;
         println!("");
     }
