@@ -1,13 +1,17 @@
-use cs50rust::{parse_number, Result};
+use cs50rust::Result;
+use std::io::Write;
 
 fn main() -> Result {
     loop {
         let mut input = String::new();
 
-        println!("Choose a number: ");
+        print!("Choose a number: ");
+
+        std::io::stdout().flush()?;
+
         std::io::stdin().read_line(&mut input)?;
 
-        let result = parse_number(&input);
+        let result = input.trim().parse::<i8>();
 
         match result {
             Ok(num) if 0 < num && num < 9 => {
@@ -21,7 +25,7 @@ fn main() -> Result {
     Ok(())
 }
 
-fn build_blocks(blocks: i64) {
+fn build_blocks(blocks: i8) {
     let mut blanks = blocks - 1;
     for n in 1..=blocks {
         for _ in 1..=blanks {

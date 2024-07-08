@@ -4,6 +4,18 @@ mod types {
 
 pub use types::Result;
 
-pub fn parse_number(input: &str) -> std::result::Result<i64, std::num::ParseIntError> {
+use std::io::Write;
+
+pub fn get_number(message: &str) -> std::result::Result<i64, std::num::ParseIntError> {
+    let mut input = String::new();
+
+    print!("{message}");
+
+    std::io::stdout().flush().expect("Could not flush.");
+
+    std::io::stdin()
+        .read_line(&mut input)
+        .expect("Could not read line.");
+
     input.trim().parse::<i64>()
 }
