@@ -6,7 +6,7 @@ pub use types::Result;
 
 use std::io::Write;
 
-pub fn get_number(message: &str) -> std::result::Result<i64, std::num::ParseIntError> {
+pub fn get_string(message: &str) -> String {
     let mut input = String::new();
 
     print!("{message}");
@@ -17,5 +17,11 @@ pub fn get_number(message: &str) -> std::result::Result<i64, std::num::ParseIntE
         .read_line(&mut input)
         .expect("Could not read line.");
 
-    input.trim().parse::<i64>()
+    input
+}
+
+pub fn get_number(message: &str) -> std::result::Result<i64, std::num::ParseIntError> {
+    let string = get_string(&message);
+
+    string.trim().parse::<i64>()
 }
