@@ -1,27 +1,23 @@
-use std::io;
-use std::io::Write;
+use cs50rust::Result;
 
-fn main() {
+fn main() -> Result {
     loop {
         let mut input = String::new();
 
-        print!("Changed owed: ");
-        io::stdout().flush().expect("Could not flush");
+        println!("Changed owed: ");
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Could not read line");
+        std::io::stdin().read_line(&mut input)?;
 
-        let result: Result<i8, _> = input.trim().parse();
+        let result = input.trim().parse::<u32>()?;
 
         match result {
-            Ok(n) if n >= 0 => {
+            n if n >= 0 => {
                 let coins = change(n, 0);
                 println!("{}", coins);
                 break;
             }
-            Ok(_) => println!("Only positive numbers allowed"),
-            Err(_) => println!("Only numbers allowed"),
+            n => println!("Only positive numbers allowed"),
+            _ => println!("Only numbers allowed"),
         }
     }
 }

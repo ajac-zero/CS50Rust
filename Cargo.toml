@@ -1,0 +1,26 @@
+[package]
+name = "cs50rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+
+[[bin]]
+name = "hello_world"
+path = "exercises/world/hello_world.rs"
+
+[[bin]]
+name = "me"
+path = "exercises/me/hello.rs"
+
+[[bin]]
+name = "mario-less"
+path = "exercises/mario-less/mario.rs"
+
+[[bin]]
+name = "mario-more"
+path = "exercises/mario-more/mario.rs"
+
+[dependencies]

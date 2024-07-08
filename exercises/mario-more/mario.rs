@@ -1,27 +1,27 @@
-use std::io::*;
+use cs50rust::{parse_number, Result};
 
-fn main() {
+fn main() -> Result {
     loop {
         let mut input = String::new();
 
-        print!("Choose a number: ");
-        stdout().flush().unwrap();
+        println!("Choose a number: ");
+        std::io::stdin().read_line(&mut input)?;
 
-        stdin().read_line(&mut input).unwrap();
+        let result = parse_number(&input);
 
-        let num: i8 = input.trim().parse().expect("Invalid input. Integers only please.");
-
-        match num {
-            num if num > 0 && num < 9 => {
+        match result {
+            Ok(num) if 0 < num && num < 9 => {
                 build_blocks(num);
                 break;
             }
             _ => println!("Choose only numbers between 1 and 8, please"),
         }
     }
+
+    Ok(())
 }
 
-fn build_blocks(blocks: i8) {
+fn build_blocks(blocks: i64) {
     let mut blanks = blocks - 1;
     for n in 1..=blocks {
         for _ in 1..=blanks {
@@ -30,7 +30,11 @@ fn build_blocks(blocks: i8) {
         for _ in 1..=n {
             print!("#");
         }
+        print!("  ");
+        for _ in 1..=n {
+            print!("#");
+        }
         blanks = blanks - 1;
-        println!("");
+        print!("\n");
     }
 }
