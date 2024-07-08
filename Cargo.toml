@@ -6,7 +6,6 @@ edition = "2021"
 [lib]
 path = "src/lib.rs"
 
-
 [[bin]]
 name = "hello_world"
 path = "exercises/world/hello_world.rs"
@@ -23,4 +22,6 @@ path = "exercises/mario-less/mario.rs"
 name = "mario-more"
 path = "exercises/mario-more/mario.rs"
 
-[dependencies]
+[[bin]]
+name = "cash"
+path = "exercises/cash/cash.rs"

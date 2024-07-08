@@ -1,47 +1,40 @@
-use cs50rust::Result;
+use cs50rust::{get_number, Result};
 
 fn main() -> Result {
     loop {
-        let mut input = String::new();
+        let change = get_number("Changed owed: ");
 
-        println!("Changed owed: ");
-
-        std::io::stdin().read_line(&mut input)?;
-
-        let result = input.trim().parse::<u32>()?;
-
-        match result {
-            n if n >= 0 => {
-                let coins = change(n, 0);
-                println!("{}", coins);
+        match change {
+            Ok(n) if n >= 0 => {
+                let coins = get_coin(n, 0);
+                println!("{coins}");
                 break;
             }
-            n => println!("Only positive numbers allowed"),
-            _ => println!("Only numbers allowed"),
+            Ok(_) => println!("Only positive numbers allowed"),
+            Err(_) => println!("Only numbers allowed"),
         }
     }
+
+    Ok(())
 }
 
-fn change(mut n: i8, mut coins: i8) -> i8 {
+fn get_coin(n: i64, coins: i64) -> i64 {
     let (quarter, dime, nickel, penny) = (25, 10, 5, 1);
 
-    if n >= quarter {
-        n = n - quarter;
-        coins = coins + 1;
-        return change(n, coins);
+    let remainder = if n >= quarter {
+        Some(n - quarter)
     } else if n >= dime {
-        n = n - dime;
-        coins = coins + 1;
-        return change(n, coins);
+        Some(n - dime)
     } else if n >= nickel {
-        n = n - nickel;
-        coins = coins + 1;
-        return change(n, coins);
+        Some(n - nickel)
     } else if n >= penny {
-        n = n - penny;
-        coins = coins + 1;
-        return change(n, coins);
+        Some(n - penny)
     } else {
-        return coins;
+        None
+    };
+
+    match remainder {
+        Some(r) => get_coin(r, coins + 1),
+        None => coins,
     }
 }
