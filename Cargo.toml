@@ -25,3 +25,7 @@ path = "exercises/mario-more/mario.rs"
 [[bin]]
 name = "cash"
 path = "exercises/cash/cash.rs"
+
+[[bin]]
+name = "credit"
+path = "exercises/credit/credit.rs"

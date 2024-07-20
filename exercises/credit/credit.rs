@@ -1,30 +1,21 @@
-use std::io::{self, Write};
+use cs50rust::{get_string, Result};
 
-fn main() {
+fn main() -> Result {
     loop {
-        let mut input = String::new();
+        let input = get_string("Number: ");
 
-        print!("Number: ");
-        io::stdout().flush().expect("Could not flush");
-
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Could not read line");
-
-        match check(&input) {
-            true => match luhn(&input) {
-                true => {
-                    println!("{}", identify(&input));
-                    break;
-                }
-                false => {
-                    println!("INVALID");
-                    break;
-                }
-            },
-            false => continue,
+        if check(&input) {
+            if luhn(&input) {
+                println!("{}", identify(&input));
+                break;
+            } else {
+                println!("INVALID");
+                break;
+            }
         }
     }
+
+    Ok(())
 }
 
 fn check(input: &str) -> bool {
@@ -53,29 +44,29 @@ fn luhn(input: &str) -> bool {
     }
 
     if (even + odd) % 10 == 0 {
-        return true;
+        true
     } else {
-        return false;
+        false
     }
 }
 
 fn identify(input: &str) -> &str {
     match &input.trim().len() {
         15 => match &input[0..2] {
-            "34" | "37" => return "AMEX",
-            _ => return "INVALID",
+            "34" | "37" => "AMEX",
+            _ => "INVALID",
         },
         16 => match &input[0..2] {
-            "51" | "52" | "53" | "54" | "55" => return "MASTERCARD",
+            "51" | "52" | "53" | "54" | "55" => "MASTERCARD",
             _ => match &input[0..1] {
-                "4" => return "VISA",
-                _ => return "INVALID",
+                "4" => "VISA",
+                _ => "INVALID",
             },
         },
         13 => match &input[0..1] {
-            "4" => return "VISA",
-            _ => return "INVALID",
+            "4" => "VISA",
+            _ => "INVALID",
         },
-        _ => return "INVALID",
+        _ => "INVALID",
     }
 }
