@@ -1,6 +1,6 @@
-use cs50rust::{get_number, Result};
+use cs50rust::get_number;
 
-fn main() -> Result {
+fn main() {
     loop {
         let change = get_number("Changed owed: ");
 
@@ -14,8 +14,6 @@ fn main() -> Result {
             Err(_) => println!("Only numbers allowed"),
         }
     }
-
-    Ok(())
 }
 
 fn get_coin(n: i64, coins: i64) -> i64 {

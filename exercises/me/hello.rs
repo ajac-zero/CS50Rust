@@ -1,13 +1,7 @@
-use cs50rust::Result;
+use cs50rust::get_string;
 
-fn main() -> Result {
-    let mut name = String::new();
-
-    println!("What´s your name? ");
-
-    std::io::stdin().read_line(&mut name)?;
+fn main() {
+    let name = get_string("What's your name? ");
 
     println!("Hello, {name}");
-
-    Ok(())
 }
