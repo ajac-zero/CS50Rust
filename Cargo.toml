@@ -8,24 +8,24 @@ path = "src/lib.rs"
 
 [[bin]]
 name = "hello_world"
-path = "exercises/world/hello_world.rs"
+path = "weeks/week_1/world/hello_world.rs"
 
 [[bin]]
 name = "me"
-path = "exercises/me/hello.rs"
+path = "weeks/week_1/me/hello.rs"
 
 [[bin]]
 name = "mario-less"
-path = "exercises/mario-less/mario.rs"
+path = "week/week_1/mario-less/mario.rs"
 
 [[bin]]
 name = "mario-more"
-path = "exercises/mario-more/mario.rs"
+path = "week/week_1/mario-more/mario.rs"
 
 [[bin]]
 name = "cash"
-path = "exercises/cash/cash.rs"
+path = "week/week_1/cash/cash.rs"
 
 [[bin]]
 name = "credit"
-path = "exercises/credit/credit.rs"
+path = "week/week_1/credit/credit.rs"
